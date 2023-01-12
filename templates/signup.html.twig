@@ -1,0 +1,58 @@
+{% extends "layout-1column.html.twig" %}
+
+{% block title %}My Websites {% endblock %}
+{% block content %}
+    {{dump(validationErrors)}}
+    {% if  validationErrors|length > 0 %}
+    <ul>
+        {% for error in validationErrors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+     <h1>Formular</h1>
+    <form action="signup.php" method="post" id="formular" novalidate>
+        <input type="hidden" name="action" value="register">
+        <div>
+            <label for="name">Vorname</label>
+            <input type="text" id="name" name="name" value="{{ name }}">
+        </div>
+        <div>
+            <label for="nachname">Nachname</label>
+            <input type="text" id="nachname" name="nachname" value="{{ nachname }}">
+        </div>
+        <div>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" value="{{ email }}">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" value="">
+
+        </div>
+        <div>
+            <p><label for="Beschreibung">Beschreibung</label></p>
+        </div>
+        <div>
+            <textarea id="Beschreibung" name="Beschreibung" rows="4" cols="50" maxlength="50">{{description}}</textarea>
+            <button>Speichern</button>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+        <style> 
+        .error{
+            color: red;
+            font-style: italic;
+        }
+        </style>
+        <script src="validation.js"></script>
+
+    </form>
+            {% block footer %}
+                &copy; Copyright 2023 by <a href="http://google.com/">Isse</a>.
+            {% endblock %}
+    {% endblock %}
+    
+    
