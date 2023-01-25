@@ -22,10 +22,10 @@ $templateData = [
     'nachname' => isset($_POST['nachname']) ? $_POST['nachname'] : '',
     'email' => isset($_POST['email']) ? $_POST['email'] : '',
     'validationErrors' => [],
+    'msg' => isset($_GET['msg']) 
 ];
 
-// display form, if nno data was posted
-
+// was form data sent?
 $isFormPost = false;
 if (isset($_POST["action"]) && $_POST["action"] === "register") {
     $isFormPost = true;
@@ -82,7 +82,7 @@ if ($isFormPost) {
 
         if ($stmt->execute()) {
 
-            header("Location: erfolgreich-signup.html");
+            header('Location: erfolgreich-signup.html?sort[name]=ASC&sort[email]=DESC');
             exit;
         }
     }
@@ -90,20 +90,3 @@ if ($isFormPost) {
 }
 
 echo $twig->render('signup.html.twig', $templateData);
-
-/*if ($isFormPost) {
-    
-
-    // Connect to the database
-    $db = new PDO('mysql:host=localhost;dbname=login_db1', 'name', 'password');
-
-    // Retrieve the data from the database
-    $stmt = $db->query('SELECT * FROM users');
-    $users = $stmt->fetchAll();
-
-
-?>
-    
-<?php
-}*/
-?>
