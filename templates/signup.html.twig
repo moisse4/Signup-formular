@@ -1,8 +1,14 @@
 {% extends "layout-1column.html.twig" %}
 
 {% block title %}My Websites {% endblock %}
+{% block msg %}
+
+
+{% endblock %}
 {% block content %}
+
     {{dump(validationErrors)}}
+    {{dump( msg )}}
     {% if  validationErrors|length > 0 %}
     <ul>
         {% for error in validationErrors %}

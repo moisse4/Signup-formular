@@ -22,7 +22,8 @@ $templateData = [
     'nachname' => isset($_POST['nachname']) ? $_POST['nachname'] : '',
     'email' => isset($_POST['email']) ? $_POST['email'] : '',
     'validationErrors' => [],
-    'msg' => isset($_GET['msg']) 
+    'msg' => '',
+    'msg_color' => ''
 ];
 
 // was form data sent?
@@ -81,9 +82,13 @@ if ($isFormPost) {
         );
 
         if ($stmt->execute()) {
-
-            header('Location: erfolgreich-signup.html?sort[name]=ASC&sort[email]=DESC');
-            exit;
+            $templateData['msg'] = 'Danke für Ihre Registrierung';
+            $templateData['msg_color'] = 'green';
+            
+        }else {
+            $templateData['msg'] = 'Ihre Registrierung konnte leider nicht gespeichert werden';
+            $templateData['msg_color'] = 'red';
+        
         }
     }
     
