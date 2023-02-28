@@ -5,9 +5,11 @@
 {% block head %}   {% endblock %}
 
 {% block body %} 
-{% include 'message.twig' %}
+{% include 'message.html.twig' %}
 <div id="content">{% block content %} {% endblock %}</div>
-{% include 'table.twig' %}
 
 
+{% block footer %}
+                &copy; Copyright 2023 by <a href="http://google.com/">Isse</a>.
+            {% endblock %}
 {% endblock %}

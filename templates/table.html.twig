@@ -1,4 +1,5 @@
-
+<form name="signuplistform" method="get" action=""> 
+<input type="submit" value="send" />
 <table>
     <thead>
         <tr>
@@ -6,24 +7,25 @@
                 <a href="?sort=name&order=asc">U</a>
                 Vorname
                 <a href="?sort=name&order=desc">D</a>
-                <input type="text" name="filter_name">
+                <input type="text" name="filter[name]">
             </th>
             <th>
                 <a href="?sort=nachname&order=asc">U</a>
                 Nachname
                 <a href="?sort=nachname&order=desc">D</a>
-                <input type="text" name="filter_nachname">
+                <input type="text" name="filter[nachname]">
             </th>
             <th>
                 <a href="?sort=email&order=asc">U</a>
                 Email
                 <a href="?sort=email&order=desc">D</a>
+                <input type="text" name="filter[email]">
             </th>
             ...
         </tr>
     </thead>
     <tbody>
-        {% for user in users %}
+        {% for user in tabledata %}
         <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.name }}</td>
@@ -34,5 +36,9 @@
         {% endfor %}
     </tbody>
 </table>
+</form>
+
+
+
 
 

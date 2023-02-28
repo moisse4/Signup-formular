@@ -6,9 +6,8 @@
 
 {% endblock %}
 {% block content %}
-
     {{dump(validationErrors)}}
-    {{dump( msg )}}
+    
     {% if  validationErrors|length > 0 %}
     <ul>
         {% for error in validationErrors %}
@@ -56,9 +55,7 @@
         <script src="validation.js"></script>
 
     </form>
-            {% block footer %}
-                &copy; Copyright 2023 by <a href="http://google.com/">Isse</a>.
-            {% endblock %}
+    
     {% endblock %}
     
     
