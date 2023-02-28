@@ -5,8 +5,9 @@
 {% block head %}   {% endblock %}
 
 {% block body %} 
+{% include 'message.twig' %}
 <div id="content">{% block content %} {% endblock %}</div>
-<div style="color: {{ msg_color }}"> {{ msg }}</div>
+{% include 'table.twig' %}
 
 
 {% endblock %}

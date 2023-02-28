@@ -10,6 +10,9 @@ $twig = new \Twig\Environment($loader, [
     'debug' => true,
     // ...
 ]);
+$function = new Twig\TwigFunction('url', function () { return 'MyURL'; });
+    $twig -> addFunction($function);
+    
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 
@@ -95,3 +98,4 @@ if ($isFormPost) {
 }
 
 echo $twig->render('signup.html.twig', $templateData);
+
