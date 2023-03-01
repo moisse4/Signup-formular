@@ -16,29 +16,41 @@ if ($mysqli->connect_errno){
 }
 */
 
-function connectdatabase($host, $dbname, $username,$password){
-    
+function connectdatabase($host, $dbname, $username, $password)
+{
+
     //global $host, $dbname, $username,$password;
     // Connect to the database
-    
+
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
 }
-function fromDatabase($pdo, $sort=null, $order=null) {
+function fromDatabase($pdo, $sort = null, $order = null)
+{
     $sql = "SELECT * FROM user";
-    if ($sort!= null && $order != null){
-    $sql = $sql  . " Order by " . $sort . " ". $order;
-    
+    if ($sort != null && $order != null) {
+        $sql = $sql  . " Order by " . $sort . " " . $order;
     };
-    // SELECT * FROM user order by nachname DESC;
+    $sql = "SELECT * FROM user WHERE 1=1";
+
+    if (!empty($_GET['filter'])) {
+        $filters = $_GET['filter'];
+        foreach ($filters as $field => $value) {
+            if (!empty($value)) {
+                $sql .= " AND $field LIKE '%$value%'";
+            }
+        }
+    }
+
+    if (!empty($_GET['sort']) && !empty($_GET['order'])) {
+        $sort = $_GET['sort'];
+        $order = $_GET['order'];
+        $sql .= " ORDER BY $sort $order";
+    }
     
-    // hadaad haysto 
-   // $sql = $sql . "";
-   //dump($sort);
-   //dump($order);
-    //dump($sql );
-    //die;
+    
+
     // Fetch the registration data from the database
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
@@ -47,4 +59,3 @@ function fromDatabase($pdo, $sort=null, $order=null) {
     // Return the registration data
     return $registrierungen;
 }
-

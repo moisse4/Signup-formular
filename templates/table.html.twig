@@ -1,27 +1,36 @@
 <form name="signuplistform" method="get" action=""> 
-<input type="submit" value="send" />
+<div class="container">
+<div class="row">
+<dive class="col-xs-4">
+<input type="submit" value="send"/>
+
 <table>
     <thead>
         <tr>
             <th>
-                <a href="?sort=name&order=asc">U</a>
+            <a href="?sort=name&order=asc">▲</a>
+            ID
+            <a href="?sort=name&order=desc">▼</a>
+            <input type="text" ID="filter[ID]">
+        </th>
+            <th>
+                <a href="?sort=name&order=asc">▲</a>
                 Vorname
-                <a href="?sort=name&order=desc">D</a>
+                <a href="?sort=name&order=desc">▼</a>
                 <input type="text" name="filter[name]">
             </th>
             <th>
-                <a href="?sort=nachname&order=asc">U</a>
+                <a href="?sort=nachname&order=asc">▲</a>
                 Nachname
-                <a href="?sort=nachname&order=desc">D</a>
+                <a href="?sort=nachname&order=desc">▼</a>
                 <input type="text" name="filter[nachname]">
             </th>
             <th>
-                <a href="?sort=email&order=asc">U</a>
+                <a href="?sort=email&order=asc">▲</a>
                 Email
-                <a href="?sort=email&order=desc">D</a>
+                <a href="?sort=email&order=desc">▼</a>
                 <input type="text" name="filter[email]">
             </th>
-            ...
         </tr>
     </thead>
     <tbody>
@@ -31,11 +40,18 @@
             <td>{{ user.name }}</td>
             <td>{{ user.nachname }}</td>
             <td>{{ user.email }}</td>
-            ...
         </tr>
         {% endfor %}
     </tbody>
 </table>
+</div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
 </form>
 
 
